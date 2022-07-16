@@ -1,0 +1,22 @@
+main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .buttons__wrapper {
+        
+        div {
+            border: 1px solid #000;
+            width: 100px;
+            height: 25px;
+            margin: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+}
