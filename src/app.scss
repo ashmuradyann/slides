@@ -1,5 +1,5 @@
 main {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,6 +17,14 @@ main {
             justify-content: center;
             align-items: center;
             cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    main {
+        .buttons__wrapper {
+            display: none;
         }
     }
 }

@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react"
 
-import { images } from '../../data/images'
+import { images1 } from '../../data/images'
 
 import "swiper/css/bundle"
 import "swiper/css"
@@ -13,7 +13,7 @@ const Vertical = () => {
                 <Swiper
                     direction={"vertical"}
                     className="mySwiper">
-                    {images.map((el, i) => {
+                    {images1.map((el, i) => {
                         return <SwiperSlide><img src={el} alt="img" /></SwiperSlide>
                     })}
                 </Swiper>
