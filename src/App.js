@@ -7,16 +7,16 @@ import './app.scss'
 
 function App() {
 
-  const [turn, setTurn] = useState('horizontal')
+  const [state, setState] = useState('horizontal')
 
   return (
     <main>
       <div className="buttons__wrapper">
-        <div onClick={() => setTurn("horizontal")}>Horizontal</div>
-        <div onClick={() => setTurn("vertical")}>Vertical</div>
+        <div onClick={() => setState("horizontal")}>Horizontal</div>
+        <div onClick={() => setState("vertical")}>Vertical</div>
       </div>
-      {turn === 'horizontal' && <Horizontal />}
-      {turn === 'vertical' && <Vertical />}
+      {state === 'horizontal' && <Horizontal />}
+      {state === 'vertical' && <Vertical />}
     </main>
   )
 }

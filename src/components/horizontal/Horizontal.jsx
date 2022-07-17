@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import Stories from 'react-insta-stories'
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectCube } from "swiper"
 
 import { images1, images2 } from '../../data/images'
@@ -14,41 +14,56 @@ import './horizontal.scss'
 
 const Horizontal = () => {
 
-  const [count, setCount] = useState(1)
-  const swiper = useSwiper()
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const swiperRef = useRef()
 
-  console.log(count)
+  const handleClick = (event, arr) => {
+    if (event.pageX > document.body.offsetWidth / 2) {
+      currentIndex !== arr.length - 1 ? setCurrentIndex(currentIndex + 1) : swiperRef.current.slideNext()
+    }
+    if (event.pageX < document.body.offsetWidth / 2) {
+      currentIndex !== 0 ? setCurrentIndex(currentIndex - 1) : swiperRef.current.slidePrev()
+    }
+  }
+
+  console.log(currentIndex)
 
   return (
     <div className="container">
       <div className="wrapper">
         <Swiper
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
           effect={"cube"}
           modules={[EffectCube]}
-          passiveListeners={false}
           className="mySwiper"
-          onSlideNextTransitionStart={() => setCount(count + 1)}
-          onSlidePrevTransitionStart={() => setCount(count - 1)}
-          spaceBetween={0}>
-          <SwiperSlide>
-            {count === 1 && <Stories
+          onSlideNextTransitionStart={() => {
+            setCurrentIndex(0)
+          }}
+          onSlidePrevTransitionStart={() => {
+            setCurrentIndex(0)
+          }}>
+          <SwiperSlide preventclicks="false" onClick={(event) => handleClick(event, images1)}>
+            <Stories
               stories={images1}
-              keyboardNavigation={true}
+              currentIndex={currentIndex}
               width={"426.5px"}
               defaultInterval={5000}
               styles={{ boxShadow: "0px 60px 17px -9px rgba(34, 60, 80, 1) inset" }}
+              onStoryEnd={() => setCurrentIndex(currentIndex + 1)}
               onAllStoriesEnd={() => {
-                setCount(2)
-                swiper.slideNext()
+                swiperRef.current.slideNext()
               }}
-            />}
+            />
           </SwiperSlide>
-          <SwiperSlide>
-            {count === 2 && <Stories
+          <SwiperSlide onClick={(event) => handleClick(event, images2)}>
+            <Stories
               stories={images2}
+              currentIndex={currentIndex}
               defaultInterval={5000}
               styles={{ boxShadow: "0px 60px 17px -9px rgba(34, 60, 80, 1) inset" }}
-            />}
+            />
           </SwiperSlide>
         </Swiper>
       </div>
