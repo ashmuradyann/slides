@@ -12,6 +12,7 @@ import "swiper/css/pagination"
 import "swiper/css"
 import './horizontal.scss'
 
+
 const Horizontal = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -48,9 +49,9 @@ const Horizontal = () => {
             <Stories
               stories={images1}
               currentIndex={currentIndex}
-              width={"426.5px"}
+              width={"100%"}
+              height={"600px"}
               defaultInterval={5000}
-              styles={{ boxShadow: "0px 60px 17px -9px rgba(34, 60, 80, 1) inset" }}
               onStoryEnd={() => setCurrentIndex(currentIndex + 1)}
               onAllStoriesEnd={() => {
                 swiperRef.current.slideNext()
@@ -61,8 +62,10 @@ const Horizontal = () => {
             <Stories
               stories={images2}
               currentIndex={currentIndex}
+              width={"fit-content"}
+              height={"fit-content"}
               defaultInterval={5000}
-              styles={{ boxShadow: "0px 60px 17px -9px rgba(34, 60, 80, 1) inset" }}
+              onStoryEnd={() => setCurrentIndex(currentIndex + 1)}
             />
           </SwiperSlide>
         </Swiper>

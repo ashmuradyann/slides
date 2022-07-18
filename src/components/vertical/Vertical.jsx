@@ -11,6 +11,7 @@ const Vertical = () => {
         <div className="container">
             <div className="wrapper">
                 <Swiper
+                style={{height: "fit-content", maxHeight: "600px"}}
                     direction={"vertical"}
                     className="mySwiper">
                     {images1.map((el, i) => {
